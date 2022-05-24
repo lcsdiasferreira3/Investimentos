@@ -19,7 +19,12 @@ export default {
       }, 2000);
     },
     registerScreen() {
-      this.isAc = false;
+      setTimeout(() => {
+        document.getElementById("card1").className = "cardLogin";
+      }, 600);
+      setTimeout(() => {
+        document.getElementById("card2").className = "cardregister";
+      }, 620);
     },
   },
 };
