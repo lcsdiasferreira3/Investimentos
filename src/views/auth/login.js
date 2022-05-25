@@ -6,6 +6,8 @@ export default {
       successLogin: false,
       loadingLogin: false,
       isAc: true,
+      password: "",
+      email: "",
     };
   },
 
@@ -25,6 +27,19 @@ export default {
       setTimeout(() => {
         document.getElementById("card2").className = "cardregister";
       }, 620);
+    },
+    login() {
+      this.$store
+        .dispatch("login", {
+          email: this.email,
+          password: this.password,
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

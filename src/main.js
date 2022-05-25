@@ -6,9 +6,23 @@ import vuetify from "./plugins/vuetify";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import vuesax from "./plugins/vuesax";
+import { initializeApp } from "firebase/app";
 
 Vue.config.productionTip = false;
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDeUYwqyFTOAyIY-2BGTIs7aijeNQoCoiQ",
+  authDomain: "investimentos-ec15d.firebaseapp.com",
+  projectId: "investimentos-ec15d",
+  storageBucket: "investimentos-ec15d.appspot.com",
+  messagingSenderId: "150694708642",
+  appId: "1:150694708642:web:43723319ea058f639adefb",
+  measurementId: "G-28MCSGBWQ7",
+};
+
+const app = initializeApp(firebaseConfig);
+
+export { app };
 const requireComponent = require.context(
   // O caminho relativo da pasta de componentes
   "./components",

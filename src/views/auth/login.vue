@@ -51,7 +51,7 @@
           <div class="d-flex justify-center mt-2">
             <vs-button
               :animate-inactive="successLogin"
-              @click="handleClickFace"
+              @click="handleClickFace, login()"
               :loading="loadingLogin"
               class="d-flex justify-center btn1"
             >
