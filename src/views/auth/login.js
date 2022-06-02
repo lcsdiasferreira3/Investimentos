@@ -1,4 +1,5 @@
 import "animate.css"; //testing a library
+import firebase from "firebase";
 
 export default {
   data() {
@@ -6,7 +7,7 @@ export default {
       successLogin: false,
       loadingLogin: false,
       isAc: true,
-      password: "",
+      Password: "",
       email: "",
     };
   },
@@ -28,14 +29,13 @@ export default {
         document.getElementById("card2").className = "cardregister";
       }, 620);
     },
+
     login() {
-      this.$store
-        .dispatch("login", {
-          email: this.email,
-          password: this.password,
-        })
-        .then((result) => {
-          console.log(result);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.Password)
+        .then((resp) => {
+          console.log(resp);
         })
         .catch((err) => {
           console.log(err);

@@ -16,7 +16,7 @@
         <v-row>
           <v-col cols="12">
             <div class="d-flex justify-center">
-              <vs-input v-model="value1" placeholder="User Email">
+              <vs-input v-model="email" placeholder="User Email">
                 <template #icon>
                   <i class="bx bx-user">@</i>
                 </template>
@@ -27,7 +27,7 @@
         <v-row justify="center">
           <v-col cols="12">
             <div class="d-flex justify-center">
-              <vs-input v-model="value1" placeholder="User Password">
+              <vs-input v-model="Password" placeholder="User Password">
                 <template #icon>
                   <i class="bx bx-user"><v-icon size="20">mdi-lock</v-icon></i>
                 </template>

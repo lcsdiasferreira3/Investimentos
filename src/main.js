@@ -6,7 +6,7 @@ import vuetify from "./plugins/vuetify";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import vuesax from "./plugins/vuesax";
-import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
 
 Vue.config.productionTip = false;
 
@@ -20,9 +20,8 @@ const firebaseConfig = {
   measurementId: "G-28MCSGBWQ7",
 };
 
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-export { app };
 const requireComponent = require.context(
   // O caminho relativo da pasta de componentes
   "./components",
