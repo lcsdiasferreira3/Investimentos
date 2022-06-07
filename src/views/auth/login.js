@@ -1,14 +1,30 @@
+import "./login.css";
 import "animate.css"; //testing a library
 import firebase from "firebase";
 
 export default {
   data() {
     return {
+      // Login Screen
+
+      emailLogin: "",
+      nameRegis: "",
       successLogin: false,
+      handleClickLogin: false,
       loadingLogin: false,
+
+      // Register //
+      successLoginRegister: false,
+      handleClickRegister: false,
+      loadingLoginRegister: false,
+
+      //Register Screen
+
       isAc: true,
-      Password: "",
-      email: "",
+      passwordLogin: "",
+
+      emailRegis: "",
+      passRegis: "",
     };
   },
 
@@ -40,6 +56,25 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    register() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.Password)
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    backToLogin() {
+      setTimeout(() => {
+        document.getElementById("card2").className = "cardregister2";
+      }, 620);
+      setTimeout(() => {
+        document.getElementById("card1").className = "cardLogin2";
+      }, 600);
     },
   },
 };

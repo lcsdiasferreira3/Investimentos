@@ -1,0 +1,138 @@
+/* General */
+.background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url("https://trademap.com.br/wp-content/uploads/2022/02/shutterstock_1688430043.png");
+}
+/* Buttons */
+.btn1 {
+  width: 110px;
+  height: 50px;
+}
+.btn2 {
+  width: 110px;
+  height: 50px;
+}
+/* Animation Card Login */
+.cardwithoutAnimation {
+  width: 24%;
+  height: 51%;
+}
+
+.cardLogin {
+  animation: cardLogin 1s forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  width: 24%;
+  height: 51%;
+}
+
+@keyframes cardLogin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.cardLogin2 {
+  animation: cardLogin2 1s forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  width: 24%;
+  height: 51%;
+}
+
+@keyframes cardLogin2 {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+.fadeInUp {
+  opacity: 50;
+  animation-name: fadeinUpKey;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+}
+
+@keyframes fadeinUpKey {
+  from {
+    transform: translate3d(0, 200px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Animation card Register */
+
+.cardregister {
+  width: 24%;
+  height: 51%;
+  animation: regis 1s forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  border-radius: 25px;
+}
+
+@keyframes regis {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+.cardregister2 {
+  width: 24%;
+  height: 51%;
+  animation: regis2 1s forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  border-radius: 25px;
+}
+
+@keyframes regis2 {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.ObjHidden {
+  display: none !important;
+}
+
+/* others */
+
+.InsideCard {
+  margin-top: 115px;
+  justify-content: space-around;
+}
+.avatarLogin {
+  margin-top: -30%;
+  position: absolute;
+  margin-left: 45%;
+}
+.avatarLoginRegis {
+  margin-top: -30%;
+  position: absolute;
+  margin-left: 45%;
+}
