@@ -120,6 +120,21 @@
   display: none !important;
 }
 
+/* Alert */
+
+.alertError {
+  animation: alert 1s forwards;
+}
+
+@keyframes alert {
+  from {
+    transform: translate3d(800px, -50px, 100px);
+  }
+  to {
+    transform: translate3d(50px, -50px, 0px);
+  }
+}
+
 /* others */
 
 .InsideCard {

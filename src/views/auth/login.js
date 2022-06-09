@@ -62,7 +62,7 @@ export default {
     login() {
       if (this.$refs.login.validate()) {
         this.$store
-          .dispacth("login", {
+          .dispatch("login", {
             email: this.emailLogin,
             password: this.passwordLogin,
           })
@@ -73,6 +73,9 @@ export default {
             this.error = err;
           });
       }
+    },
+    errorAlert() {
+      this.error = "";
     },
     register() {
       //if (!this.error && validation.passwordValidation(this.passwordLogin))

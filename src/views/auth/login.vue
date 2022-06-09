@@ -98,7 +98,14 @@
         </v-col>
       </v-row>
     </v-card>
-
+    <div v-if="this.error">
+      <BaseAlert
+        color="red"
+        :text="this.error"
+        class="alertError"
+        @AlertMethod="errorAlert"
+      ></BaseAlert>
+    </div>
     <!-- ============================================================================================ -->
 
     <v-card class="ObjHidden rounded-xl" id="card2" color="#080a23">
