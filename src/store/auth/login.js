@@ -1,28 +1,27 @@
-// import firebase from "firebase";
+import authService from "../../services/auth_service";
 
 export default {
   state: {
     loading: false,
   },
-  mutations: {},
+  mutations: {
+    loading(state, bool) {
+      state.loading = bool;
+    },
+  },
   actions: {
-    // login({ email, password }) {
-    //   commit("loading"); { commit },
-    // //   firebase
-    //     .auth()
-    //     .createUserWithEmailAndPassword(email, password)
-    // .then((data) => {
-    //   data.user
-    //     .updateProfile({
-    //       displayName: this.form.name,
-    //     })
-    //     .then(() => {
-    //       console.log("deu certo");
-    //     });
-    // })
-    // .catch((err) => {
-    //   this.error = err.message;
-    // });
-    // },
+    login({ commit }, { email, password }) {
+      commit("loading", true);
+      authService
+        .login(email, password)
+        .then((data) => {
+          commit("loading", false);
+          console.log(data);
+        })
+        .catch((err) => {
+          commit("loading", false);
+          console.log(err);
+        });
+    },
   },
 };

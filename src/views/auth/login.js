@@ -1,30 +1,43 @@
+// import validation from "../../util/validation";
 import "./login.css";
-import "animate.css"; //testing a library
-import firebase from "firebase";
 
 export default {
   data() {
     return {
-      // Login Screen
+      // Login Screen // =================
 
+      // Login btn //
       emailLogin: "",
-      nameRegis: "",
-      successLogin: false,
-      handleClickLogin: false,
-      loadingLogin: false,
-
-      // Register //
-      successLoginRegister: false,
-      handleClickRegister: false,
-      loadingLoginRegister: false,
-
-      //Register Screen
-
-      isAc: true,
       passwordLogin: "",
+      successLogin1: false,
+      handleClickLogin1: false,
+      loadingLogin1: false,
 
-      emailRegis: "",
-      passRegis: "",
+      // Register btn //
+      successLogin2: false,
+      handleClickLogin2: false,
+      loadingLogin2: false,
+
+      // Register Screen // =================
+
+      // Login btn //
+      emailRegister: "",
+      passwordRegister: "",
+      passwordRegisterConfirm: "",
+      successRegister1: false,
+      handleRegister1: false,
+      loadingRegister1: false,
+
+      // Register btn //
+
+      successRegister2: false,
+      handleRegister2: false,
+      loadingRegister2: false,
+      //=====================================//
+
+      error: "",
+      rulesFrom: [(v) => !!v || "Field Required"],
+      show1: false,
     };
   },
 
@@ -47,26 +60,35 @@ export default {
     },
 
     login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.Password)
-        .then((resp) => {
-          console.log(resp);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (this.$refs.login.validate()) {
+        this.$store
+          .dispacth("login", {
+            email: this.emailLogin,
+            password: this.passwordLogin,
+          })
+          .then((resp) => {
+            console.log(resp);
+          })
+          .catch((err) => {
+            this.error = err;
+          });
+      }
     },
     register() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.Password)
-        .then((resp) => {
-          console.log(resp);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      //if (!this.error && validation.passwordValidation(this.passwordLogin))
+      //  this.error = "Password ";
+      // firebase
+      //   .auth()
+      //   .createUserWithEmailAndPassword(
+      //     this.emailRegister,
+      //     this.passwordRegister
+      //   )
+      //   .then((resp) => {
+      //     console.log(resp);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     },
     backToLogin() {
       setTimeout(() => {

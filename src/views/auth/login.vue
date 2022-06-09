@@ -13,30 +13,38 @@
             </vs-avatar>
           </div>
         </v-row>
-        <v-row justify="center">
-          <v-col cols="6" class="pb-0">
-            <v-text-field
-              dark
-              v-model="emailLogin"
-              outlined
-              filled
-              placeholder="Email"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row justify="center">
-          <v-col cols="6" class="pb-0">
-            <v-text-field
-              dark
-              v-model="passwordLogin"
-              outlined
-              filled
-              placeholder="Password"
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
+        <v-form ref="login">
+          <v-row justify="center">
+            <v-col cols="6" class="pb-0">
+              <v-text-field
+                dark
+                v-model="emailLogin"
+                outlined
+                filled
+                placeholder="Email"
+                :rules="rulesFrom"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="6" class="pb-0">
+              <v-text-field
+                dark
+                v-model="passwordLogin"
+                outlined
+                filled
+                placeholder="Password"
+                :rules="rulesFrom"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                @click:append="show1 = !show1"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+        </v-form>
+
         <v-row>
           <v-col cols="12">
             <div class="d-flex justify-space-around">
@@ -52,15 +60,15 @@
         <v-col cols="6">
           <div class="d-flex justify-center mt-2">
             <vs-button
-              :animate-inactive="successLogin"
-              @click="handleClickLogin, login()"
-              :loading="loadingLogin"
+              :animate-inactive="successLogin1"
+              @click="handleClickLogin1, login()"
+              :loading="loadingLogin1"
               class="d-flex justify-center btn1"
             >
               <i class="bx bx-user"
                 ><v-icon size="30px" color="white">mdi-login</v-icon></i
               >
-              {{ successLogin ? "Welcome!" : "" }}
+              {{ successLogin1 ? "Welcome!" : "" }}
               <template #animate>
                 <i class="bx bx-user"></i>
                 Login
@@ -71,9 +79,9 @@
         <v-col cols="6" class="">
           <div class="d-flex justify-center mt-2">
             <vs-button
-              :animate-inactive="successLoginRegister"
-              @click="handleClickRegister, registerScreen()"
-              :loading="loadingLoginRegister"
+              :animate-inactive="successLogin2"
+              @click="handleClickLogin2, registerScreen()"
+              :loading="loadingLogin2"
               class="d-flex justify-center btn2"
             >
               <i class="bx bx-user"
@@ -103,49 +111,58 @@
               </vs-avatar>
             </div>
           </v-row>
-          <v-row>
-            <v-col cols="12" class="d-flex justify-center">
-              <div class="pa-2">
-                <vs-input
-                  v-model="nameRegis"
-                  placeholder="User Password"
-                  class="pb-5"
-                >
-                  <template #icon>
-                    <i class="bx bx-user black--text">@</i>
-                  </template>
-                </vs-input>
-                <vs-input v-model="emailRegis" class="pb-5">
-                  <template #icon>
-                    <i class="bx bx-user"
-                      ><v-icon size="20">mdi-lock</v-icon></i
-                    >
-                  </template>
-                </vs-input>
-                <vs-input v-model="passRegis">
-                  <template #icon>
-                    <i class="bx bx-user"
-                      ><v-icon size="20">mdi-lock</v-icon></i
-                    >
-                  </template>
-                </vs-input>
-              </div>
+          <span class="d-flex justify-center mt-n8 mb-5"
+            >Create a user account to use the system. It's free!</span
+          >
+          <v-row justify="center">
+            <v-col cols="6" class="pb-0">
+              <v-text-field
+                dark
+                v-model="emailRegister"
+                outlined
+                filled
+                placeholder="Email"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="6" class="pb-0">
+              <v-text-field
+                dark
+                v-model="passwordRegister"
+                outlined
+                filled
+                placeholder="Password"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="6" class="pb-0">
+              <v-text-field
+                dark
+                v-model="passwordRegisterConfirm"
+                outlined
+                filled
+                placeholder="Confirm the password"
+              >
+              </v-text-field>
             </v-col>
           </v-row>
         </div>
-        <v-row class="pa-10">
+        <v-row>
           <v-col cols="6" class="">
             <div class="d-flex justify-center mt-2">
               <vs-button
-                :animate-inactive="successLogin"
-                @click="handleClickFace, backToLogin()"
-                :loading="loadingLogin"
+                :animate-inactive="successRegister1"
+                @click="handleRegister1, backToLogin()"
+                :loading="loadingRegister1"
                 class="d-flex justify-center btn1"
               >
                 <i class="bx bx-user"
                   ><v-icon size="30px" color="white">mdi-login</v-icon></i
                 >
-                {{ successLogin ? "Welcome" : "" }}
                 <template #animate>
                   <i class="bx bx-user"></i>
                   Login
@@ -156,9 +173,9 @@
           <v-col cols="6" class="">
             <div class="d-flex justify-center mt-2">
               <vs-button
-                :animate-inactive="successLogin"
-                @click="handleClickFace, register()"
-                :loading="loadingLogin"
+                :animate-inactive="successRegister2"
+                @click="handleRegister2, register()"
+                :loading="loadingRegister2"
                 class="d-flex justify-center btn2"
               >
                 <i class="bx bx-user"
@@ -166,7 +183,7 @@
                     >mdi-account-plus</v-icon
                   ></i
                 >
-                {{ successLogin ? "Bem-Vindo(a)" : "" }}
+                {{ successRegister2 ? "Bem-Vindo(a)" : "" }}
                 <template #animate>
                   <i class="bx bx-user"></i>
                   Register
