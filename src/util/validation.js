@@ -3,9 +3,9 @@ const validationRegex = {
     const regexValidation =
       /^(?=.*\d)(?=.*[a-z])(?=.*[!@#%&])(?=.*[A-Z]).{6,20}$/;
     if (regexValidation.test(password)) {
-      return true;
+      return "";
     } else {
-      return false;
+      return "Password must contain between 6 to 20 letters, with at least 1 uppercase letter, one lowercase letter, 1 number and one special character";
     }
   },
 };

@@ -31,5 +31,21 @@ export default {
           });
       });
     },
+    register({ commit }, { email, password }) {
+      return new Promise((resolve, reject) => {
+        commit("loading", true);
+        authService
+          .register(email, password)
+          .then((data) => {
+            resolve(data);
+            commit("loading", false);
+          })
+          .catch((err) => {
+            reject(err);
+            commit("loading", false);
+            commit("data", err);
+          });
+      });
+    },
   },
 };

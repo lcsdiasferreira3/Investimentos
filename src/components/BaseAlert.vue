@@ -7,11 +7,10 @@
       :height="height"
       rounded="lg"
       >{{ text }}
-
-      <v-btn icon class="d-flex justify-start mt-n9 ml-n3" @click="method()"
-        ><v-icon color="white" class="marginBtn">mdi-close</v-icon></v-btn
-      >
     </v-alert>
+    <v-btn icon class="d-flex justify-start ml-n1" @click="method()"
+      ><v-icon color="white" class="marginBtn">mdi-close</v-icon></v-btn
+    >
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
     },
     height: {
       type: String,
-      default: "110px",
+      default: "130px",
     },
     color: {
       type: String,
@@ -51,5 +50,6 @@ export default {
 }
 .marginBtn {
   margin-left: 6px;
+  margin-top: 10px;
 }
 </style>

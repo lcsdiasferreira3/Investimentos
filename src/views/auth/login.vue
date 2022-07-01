@@ -71,7 +71,7 @@
               {{ successLogin1 ? "Welcome!" : "" }}
               <template #animate>
                 <i class="bx bx-user"></i>
-                Login
+                Confirm Login
               </template>
             </vs-button>
           </div>
@@ -91,19 +91,28 @@
               >
               <template #animate>
                 <i class="bx bx-user"></i>
-                Register
+                Go to Register
               </template>
             </vs-button>
           </div>
         </v-col>
       </v-row>
     </v-card>
-    <div v-if="this.error">
+    <div v-show="this.error">
       <BaseAlert
         color="red"
         :text="this.error"
         class="alertError"
         @AlertMethod="errorAlert"
+      ></BaseAlert>
+    </div>
+
+    <div v-show="this.success">
+      <BaseAlert
+        color="green"
+        :text="this.success"
+        class="AlertSucces"
+        @AlertMethod="errorSuccess"
       ></BaseAlert>
     </div>
     <!-- ============================================================================================ -->
@@ -121,42 +130,53 @@
           <span class="d-flex justify-center mt-n8 mb-5"
             >Create a user account to use the system. It's free!</span
           >
-          <v-row justify="center">
-            <v-col cols="6" class="pb-0">
-              <v-text-field
-                dark
-                v-model="emailRegister"
-                outlined
-                filled
-                placeholder="Email"
-              >
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row justify="center">
-            <v-col cols="6" class="pb-0">
-              <v-text-field
-                dark
-                v-model="passwordRegister"
-                outlined
-                filled
-                placeholder="Password"
-              >
-              </v-text-field>
-            </v-col>
-          </v-row>
-          <v-row justify="center">
-            <v-col cols="6" class="pb-0">
-              <v-text-field
-                dark
-                v-model="passwordRegisterConfirm"
-                outlined
-                filled
-                placeholder="Confirm the password"
-              >
-              </v-text-field>
-            </v-col>
-          </v-row>
+          <v-form ref="register">
+            <v-row justify="center">
+              <v-col cols="6" class="pb-0">
+                <v-text-field
+                  dark
+                  v-model="emailRegister"
+                  :rules="rulesFrom"
+                  outlined
+                  filled
+                  placeholder="Email"
+                >
+                </v-text-field>
+              </v-col>
+            </v-row>
+            <v-row justify="center">
+              <v-col cols="6" class="pb-0">
+                <v-text-field
+                  dark
+                  v-model="passwordRegister"
+                  outlined
+                  :rules="rulesFrom"
+                  :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show2 ? 'text' : 'password'"
+                  @click:append="show2 = !show2"
+                  filled
+                  placeholder="Password"
+                >
+                </v-text-field>
+              </v-col>
+            </v-row>
+            <v-row justify="center">
+              <v-col cols="6" class="pb-0">
+                <v-text-field
+                  dark
+                  v-model="passwordRegisterConfirm"
+                  :rules="rulesFrom"
+                  :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show3 ? 'text' : 'password'"
+                  @click:append="show3 = !show3"
+                  outlined
+                  filled
+                  placeholder="Confirm the password"
+                >
+                </v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
         </div>
         <v-row>
           <v-col cols="6" class="">
@@ -172,7 +192,7 @@
                 >
                 <template #animate>
                   <i class="bx bx-user"></i>
-                  Login
+                  Back to Login
                 </template>
               </vs-button>
             </div>
@@ -193,7 +213,7 @@
                 {{ successRegister2 ? "Bem-Vindo(a)" : "" }}
                 <template #animate>
                   <i class="bx bx-user"></i>
-                  Register
+                  Confirm Register
                 </template>
               </vs-button>
             </div>

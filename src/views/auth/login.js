@@ -1,4 +1,4 @@
-// import validation from "../../util/validation";
+import validation from "../../util/validation";
 import "./login.css";
 
 export default {
@@ -20,15 +20,16 @@ export default {
 
       // Register Screen // =================
 
-      // Login btn //
+      // Register btn //
       emailRegister: "",
       passwordRegister: "",
       passwordRegisterConfirm: "",
       successRegister1: false,
       handleRegister1: false,
       loadingRegister1: false,
+      success: false,
 
-      // Register btn //
+      // Login btn //
 
       successRegister2: false,
       handleRegister2: false,
@@ -38,6 +39,8 @@ export default {
       error: "",
       rulesFrom: [(v) => !!v || "Field Required"],
       show1: false,
+      show2: false,
+      show3: false,
     };
   },
 
@@ -61,37 +64,55 @@ export default {
 
     login() {
       if (this.$refs.login.validate()) {
+        this.loadingLogin1 = true;
         this.$store
           .dispatch("login", {
             email: this.emailLogin,
             password: this.passwordLogin,
           })
-          .then((resp) => {
-            console.log(resp);
+          .then(() => {
+            this.loadingLogin1 = false;
+            this.$router.push({ name: "dashboard" });
           })
           .catch((err) => {
             this.error = err;
+            this.loadingLogin1 = false;
           });
       }
     },
     errorAlert() {
       this.error = "";
     },
+    errorSuccess() {
+      this.success = "";
+    },
     register() {
-      //if (!this.error && validation.passwordValidation(this.passwordLogin))
-      //  this.error = "Password ";
-      // firebase
-      //   .auth()
-      //   .createUserWithEmailAndPassword(
-      //     this.emailRegister,
-      //     this.passwordRegister
-      //   )
-      //   .then((resp) => {
-      //     console.log(resp);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      if (this.$refs.register.validate()) {
+        this.loadingRegister2 = true;
+        this.error = "";
+        if (validation.passwordValidation(this.passwordRegister))
+          this.error = validation.passwordValidation(this.passwordRegister);
+        if (this.passwordRegister !== this.passwordRegisterConfirm)
+          this.error = "Passwords are not the same";
+        if (!this.error) {
+          this.$store
+            .dispatch("register", {
+              email: this.emailRegister,
+              password: this.passwordRegister,
+            })
+            .then(() => {
+              this.loadingRegister2 = false;
+              this.success = "New account created. Thank you!";
+              setTimeout(() => this.backToLogin(), 1500);
+              this.$refs.register.reset();
+            })
+            .catch((err) => {
+              this.loadingRegister2 = false;
+              this.error = err.message;
+            });
+        }
+        this.loadingRegister2 = false;
+      }
     },
     backToLogin() {
       setTimeout(() => {
@@ -100,6 +121,7 @@ export default {
       setTimeout(() => {
         document.getElementById("card1").className = "cardLogin2";
       }, 600);
+      setTimeout(() => (this.success = ""), 700);
     },
   },
 };
